@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalDependencies">
+    <plugin id="Docker" />
+    <plugin id="NodeJS" />
+    <plugin id="String Manipulation" />
+    <plugin id="com.dmarcotte.handlebars" />
+    <plugin id="com.wix.eslint" />
+    <plugin id="de.espend.idea.laravel" />
+    <plugin id="de.espend.idea.php.annotation" />
+    <plugin id="fr.adrienbrault.idea.symfony2plugin" />
+    <plugin id="mobi.hsz.idea.gitignore" />
+    <plugin id="org.editorconfig.editorconfigjetbrains" />
+    <plugin id="org.psliwa.idea.composer" />
+    <plugin id="ru.adelf.idea.dotenv" />
+  </component>
+</project>
