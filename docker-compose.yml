@@ -2,7 +2,7 @@ version: "3.7"
 services:
   ### PHP-FPM ##############################################
   php-fpm:
-    container_name: lumen-fpm
+    container_name: lumos-fpm
     build:
       context: .docker-files/php-fpm
       args:
@@ -24,11 +24,11 @@ services:
 
   ### MySQL ################################################
   mysql:
-    container_name: lumen-mysql
+    container_name: lumos-mysql
     build:
       context: ./.docker-files/mysql
     environment:
-      - MYSQL_DATABASE=lumen
+      - MYSQL_DATABASE=lumos
       - MYSQL_ROOT_PASSWORD=root
       - TZ=UTC
     volumes:
@@ -38,9 +38,9 @@ services:
     networks:
       - backend
 
-  ### Lumen NGINX Server #########################################
+  ### Lumos NGINX Server #########################################
   nginx:
-    container_name: lumen-nginx
+    container_name: lumos-nginx
     build:
       context: ./.docker-files/nginx
       args:
@@ -68,7 +68,7 @@ services:
   ### phpMyAdmin #########################################
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: lumen-phpmyadmin
+    container_name: lumos-phpmyadmin
     environment:
       # PMA_ARBITRARY: 1
       PMA_HOSTS: mysql
@@ -83,7 +83,7 @@ services:
 
   ### React Frontend #########################################
   react:
-    container_name: lumen-react
+    container_name: lumos-react
     build:
       context: ./.docker-files/react
       dockerfile: Dockerfile
@@ -98,11 +98,13 @@ services:
     networks:
       - frontend
       - backend
+    depends_on:
+      - nginx
 
 #  ### Redis ################################################
 #  redis:
 #    image: redis:5
-#    container_name: lumen-redis
+#    container_name: lumos-redis
 #    ports:
 #      - "${REDIS_HOST_PORT}:6379"
 #    networks:
@@ -111,7 +113,7 @@ services:
 #  ### REDISWEBUI ################################################
 #  redis-webui:
 #    image: erikdubbelboer/phpredisadmin
-#    container_name: lumen-rediswebui
+#    container_name: lumos-rediswebui
 #    environment:
 #      - ADMIN_USER=admin
 #      - ADMIN_PASS=admin
@@ -126,6 +128,8 @@ services:
 
 networks:
   frontend:
+    name: lumos-frontend
     driver: ${NETWORKS_DRIVER}
   backend:
+    name: lumos-frontend
     driver: ${NETWORKS_DRIVER}
