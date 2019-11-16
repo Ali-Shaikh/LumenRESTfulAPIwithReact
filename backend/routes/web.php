@@ -35,5 +35,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
         $router->put('books/{id}', ['uses' => 'BookController@update']);
 
+        $router->post('register', ['uses' => 'UserController@create']);
+
     });
 });
