@@ -27,13 +27,13 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
         $router->get('books', ['uses' => 'BookController@getAllBooks']);
 
-        $router->get('books/{id}', ['uses', 'BookController@getBookByID']);
+        $router->get('books/{id}', ['uses' => 'BookController@getBookByID']);
 
-        $router->post('books', ['uses', 'BookController@create']);
+        $router->post('books', ['uses' => 'BookController@create']);
 
-        $router->delete('books/{id}', ['uses', 'BookController@delete']);
+        $router->delete('books/{id}', ['uses' => 'BookController@delete']);
 
-        $router->put('books/{id}', ['uses', 'BookController@update']);
+        $router->put('books/{id}', ['uses' => 'BookController@update']);
 
     });
 });
