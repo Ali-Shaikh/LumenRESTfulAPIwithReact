@@ -85,11 +85,11 @@ services:
   react:
     container_name: lumos-react
     build:
-      context: ./.docker-files/react
+      context: ./frontend
       dockerfile: Dockerfile
     volumes:
-      - './frontend:/app'
-#      - '/app/node_modules'
+      - './frontend/:/app'
+      - '/app/node_modules'
     ports:
       - '${REACT_HOST_HTTP_PORT}:3000'
     environment:
