@@ -112,6 +112,7 @@
       <path value="$PROJECT_DIR$/backend/vendor/illuminate/view" />
       <path value="$PROJECT_DIR$/backend/vendor/nikic/fast-route" />
       <path value="$PROJECT_DIR$/backend/vendor/laravel/lumen-framework" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/error-handler" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

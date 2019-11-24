@@ -26,6 +26,9 @@ RUN apt-get update && \
     libfreetype6-dev \
     libssl-dev \
     libmcrypt-dev \
+    zlib1g-dev \
+    libzip-dev \
+    unzip \
   && rm -rf /var/lib/apt/lists/*
 
   # Install the PHP pdo_mysql extention
@@ -51,6 +54,13 @@ RUN pecl install -o -f redis \
 ###########################################################################
 
 RUN docker-php-ext-install bcmath
+
+###########################################################################
+# zip: Install and configure PHP zip extension
+###########################################################################
+
+RUN docker-php-ext-configure zip --with-libzip && \
+    docker-php-ext-install zip
 
 ###########################################################################
 # Exif:
