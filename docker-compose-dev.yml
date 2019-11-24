@@ -1,0 +1,135 @@
+version: "3.7"
+services:
+  ### PHP-FPM ##############################################
+  php-fpm:
+    container_name: lumos-fpm
+    build:
+      context: .docker-files/php-fpm
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    volumes:
+      - ./.docker-configs/php7.3.ini:/usr/local/etc/php/php.ini
+      - ./backend:/var/www
+      - .docker-files/php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    expose:
+      - "9000"
+    extra_hosts:
+      - "dockerhost:${DOCKER_HOST_IP}"
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+  ### MySQL ################################################
+  mysql:
+    container_name: lumos-mysql
+    build:
+      context: ./.docker-files/mysql
+    environment:
+      - MYSQL_DATABASE=lumos
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=UTC
+    volumes:
+      - ./.sql-dumps/:/docker-entrypoint-initdb.d
+    ports:
+      - "${MYSQL_HOST_PORT}:3306"
+    networks:
+      - backend
+
+  ### Lumos NGINX Server #########################################
+  nginx:
+    container_name: lumos-nginx
+    build:
+      context: ./.docker-files/nginx
+      args:
+        - PHP_UPSTREAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
+        - PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    volumes:
+      - ./backend:/var/www
+      - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
+      - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
+      - ${NGINX_SSL_PATH}:/etc/nginx/ssl
+    ports:
+      - "${NGINX_HOST_HTTP_PORT}:80"
+#      - "${NGINX_HOST_HTTPS_PORT}:443"
+    depends_on:
+      - php-fpm
+    networks:
+      - frontend
+      - backend
+    links:
+      - php-fpm
+
+  ### phpMyAdmin #########################################
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: lumos-phpmyadmin
+    environment:
+      # PMA_ARBITRARY: 1
+      PMA_HOSTS: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "${PMA_HOST_PORT}:80"
+    depends_on:
+      - mysql
+    networks:
+      - backend
+
+  ### React Frontend #########################################
+  react:
+    container_name: lumos-react
+    build:
+      context: ./.docker-files/react
+      dockerfile: Dockerfile
+    volumes:
+      - './frontend/:/app'
+#      - '/app/node_modules'
+    ports:
+      - '${REACT_HOST_HTTP_PORT}:3000'
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - nginx
+
+#  ### Redis ################################################
+#  redis:
+#    image: redis:5
+#    container_name: lumos-redis
+#    ports:
+#      - "${REDIS_HOST_PORT}:6379"
+#    networks:
+#      - backend
+
+#  ### REDISWEBUI ################################################
+#  redis-webui:
+#    image: erikdubbelboer/phpredisadmin
+#    container_name: lumos-rediswebui
+#    environment:
+#      - ADMIN_USER=admin
+#      - ADMIN_PASS=admin
+#      - REDIS_1_HOST=redis
+#      - REDIS_1_PORT=6379
+#    networks:
+#      - backend
+#    ports:
+#      - "${REDIS_WEBUI_HOST_PORT}:80"
+#    depends_on:
+#      - redis
+
+networks:
+  frontend:
+    name: lumos-frontend
+    driver: ${NETWORKS_DRIVER}
+  backend:
+    name: lumos-frontend
+    driver: ${NETWORKS_DRIVER}

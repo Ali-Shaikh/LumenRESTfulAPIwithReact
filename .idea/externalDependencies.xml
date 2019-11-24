@@ -9,6 +9,7 @@
     <plugin id="de.espend.idea.laravel" />
     <plugin id="de.espend.idea.php.annotation" />
     <plugin id="fr.adrienbrault.idea.symfony2plugin" />
+    <plugin id="intellij.prettierJS" />
     <plugin id="mobi.hsz.idea.gitignore" />
     <plugin id="org.editorconfig.editorconfigjetbrains" />
     <plugin id="org.psliwa.idea.composer" />
