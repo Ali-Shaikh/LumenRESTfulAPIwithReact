@@ -1,35 +1,57 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true,
-        "node": true
-    },
     "extends": [
+        "eslint:recommended",
+        "plugin:import/errors",
+        "plugin:react/recommended",
+        "plugin:jsx-a11y/recommended",
+        "prettier",
+        "prettier/react",
         "airbnb"
     ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+    "rules": {
+        "react/prop-types": 0,
+        "react-hooks/rules-of-hooks": "error",
+        "no-console": "warn",
+        "operator-linebreak": "warn",
+        "react/jsx-one-expression-per-line": [
+            "error",
+            {
+                "allow": "literal"
+            }
+        ]
     },
+    "parser": "babel-eslint",
+    "plugins": [
+        "react",
+        "import",
+        "jsx-a11y",
+        "react-hooks"
+    ],
     "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true
-        },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
+        }
     },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "implicit-arrow-linebreak": "off",
-        "comma-dangle": "off",
-        "indent": "off",
-        "no-trailing-spaces": "off",
-        "no-undef": "off",
-        "no-use-before-define": "off",
-        "no-console": "off",
-        "no-param-reassign": "off"
-    }
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "overrides": [
+        {
+            "files": [
+                "App.test.js"
+            ],
+            "rules": {
+                "no-undef": "off"
+            }
+        }
+    ]
 }
