@@ -87,6 +87,31 @@
       <path value="$PROJECT_DIR$/backend/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/backend/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/backend/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/auth" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/broadcasting" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/bus" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/cache" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/config" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/console" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/container" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/database" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/encryption" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/events" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/filesystem" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/hashing" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/http" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/log" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/pagination" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/pipeline" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/queue" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/session" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/support" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/translation" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/validation" />
+      <path value="$PROJECT_DIR$/backend/vendor/illuminate/view" />
+      <path value="$PROJECT_DIR$/backend/vendor/nikic/fast-route" />
+      <path value="$PROJECT_DIR$/backend/vendor/laravel/lumen-framework" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
