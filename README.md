@@ -4,6 +4,21 @@ Lumen RESTful API with React Front-end
 
 ## Getting Started
 
+* Install Docker
+* Clone Repo
+* `cd` to the backend folder rename `.env.example` to `.env`
+* Open terminal `cd` to Project root
+* run `docker-compose up`
+* Wait for docker to download images and start the services, first time it will take a while; get a cuppa
+* Open another terminal (don't close the first one), cd to `backend` folder run `docker exec -it lumos-fpm composer install`
+* To run migration and seed the DB run `docker exec -it lumos-fpm php artisan migrate`
+
+* Access React App `localhost:4001`
+* Access Lumen App `http://localhost:4002/api/v1/`
+
+* Use Postman to import `Lumen x React.postman_collection.json` and test the API
+
+
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
